@@ -15,7 +15,15 @@ func main() {
         fmt.Fprintf(w, "Hello world, %q \n", html.EscapeString(r.URL.Path))
     })
 
-    log.Printf("Listening on port %s", port)
+    startServer()
+}
 
-    log.Fatal(http.ListenAndServe(":"+port, nil))
+func startServer()  {
+    
+    log.Printf("Listening on port %s", port)
+    err := http.ListenAndServe(":"+port, nil)
+    
+    if err != nil {
+        log.Fatal(err)
+    }
 }
